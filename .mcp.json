@@ -4,43 +4,8 @@
       "command": "bash",
       "args": [
         "-c",
-        "exec npx -y @modelcontextprotocol/server-postgres \"postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}?sslmode=verify-ca&sslrootcert=./ca.pem\""
-      ],
-      "env": {
-        "POSTGRES_HOST":     "${POSTGRES_HOST}",
-        "POSTGRES_PORT":     "${POSTGRES_PORT}",
-        "POSTGRES_DB":       "${POSTGRES_DB}",
-        "POSTGRES_USER":     "${POSTGRES_USER}",
-        "POSTGRES_PASSWORD": "${POSTGRES_PASSWORD}"
-      },
-      "inputSchema": {
-        "type": "object",
-        "properties": {
-          "POSTGRES_HOST": {
-            "type": "string",
-            "description": "Хост PostgreSQL (например: host.mdb.yandexcloud.kz)"
-          },
-          "POSTGRES_PORT": {
-            "type": "string",
-            "description": "Порт PostgreSQL",
-            "default": "6432"
-          },
-          "POSTGRES_DB": {
-            "type": "string",
-            "description": "Имя базы данных"
-          },
-          "POSTGRES_USER": {
-            "type": "string",
-            "description": "Пользователь PostgreSQL"
-          },
-          "POSTGRES_PASSWORD": {
-            "type": "string",
-            "description": "Пароль PostgreSQL",
-            "format": "password"
-          }
-        },
-        "required": ["POSTGRES_HOST", "POSTGRES_PORT", "POSTGRES_DB", "POSTGRES_USER", "POSTGRES_PASSWORD"]
-      }
+        "set -a && source .env && set +a && exec npx -y @modelcontextprotocol/server-postgres \"postgresql://$POSTGRES_USER:$POSTGRES_PASSWORD@$POSTGRES_HOST:$POSTGRES_PORT/$POSTGRES_DB?sslmode=verify-ca&sslrootcert=./ca.pem\""
+      ]
     }
   }
 }
