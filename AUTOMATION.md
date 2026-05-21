@@ -7,6 +7,38 @@
 
 ---
 
+## 0. Создать GitHub-репозиторий и опубликовать код
+
+Автоматизация запускается через GitHub Actions — значит, код должен лежать в твоём репозитории на GitHub.
+
+### Создать репозиторий
+
+1. Открой [github.com/new](https://github.com/new)
+2. Заполни:
+   - **Repository name** — например, `greenmarket-reports`
+   - Видимость — **Private** (рекомендуется: в репо будут секреты с паролями)
+3. **Не добавляй** README, .gitignore или лицензию — репозиторий должен быть пустым
+4. Нажми **Create repository**
+5. Скопируй ссылку вида `https://github.com/<твой-логин>/greenmarket-reports.git`
+
+### Подключить репозиторий и запушить код
+
+В терминале (замени URL на свой):
+
+```bash
+git remote add origin https://github.com/<твой-логин>/greenmarket-reports.git
+git branch -M main
+git push -u origin main
+```
+
+Если GitHub запрашивает авторизацию — войди через браузер или введи Personal Access Token (создаётся в шаге 2).
+
+### Включить GitHub Actions
+
+Открой репозиторий на GitHub → вкладка **Actions** → нажми **I understand my workflows, go ahead and enable them**.
+
+---
+
 ## 1. GitHub — секреты репозитория
 
 `github.com/<репо>/settings/secrets/actions` → **New repository secret**
