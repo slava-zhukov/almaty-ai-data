@@ -1,0 +1,33 @@
+name: ГринМаркет — сбор данных
+
+on:
+  workflow_dispatch:
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Установить зависимости
+        run: pip install psycopg2-binary python-dotenv requests
+
+      - name: Забрать данные из PostgreSQL
+        env:
+          POSTGRES_HOST:     ${{ secrets.POSTGRES_HOST }}
+          POSTGRES_PORT:     ${{ secrets.POSTGRES_PORT }}
+          POSTGRES_DB:       ${{ secrets.POSTGRES_DB }}
+          POSTGRES_USER:     ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+        run: python daily_report.py fetch
+
+      - name: Загрузить артефакт
+        uses: actions/upload-artifact@v4
+        with:
+          name: daily-report
+          path: report_data.json
+          retention-days: 1
