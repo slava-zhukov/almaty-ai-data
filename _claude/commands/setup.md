@@ -60,7 +60,23 @@ brew install node
 
 Для Windows: попроси скачать установщик с https://nodejs.org и перезапустить терминал.
 
-## Шаг 3 — Проверить CA-сертификат
+## Шаг 3 — Проверить psql
+
+```bash
+psql --version
+```
+
+Если команда не найдена:
+
+```bash
+# macOS
+brew install libpq
+brew link --force libpq
+```
+
+Для Windows: скачай и установи [PostgreSQL](https://www.postgresql.org/download/windows/) — `psql` входит в состав установщика. После установки перезапусти терминал.
+
+## Шаг 4 — Проверить CA-сертификат
 
 ```bash
 ls ca.pem
@@ -72,7 +88,7 @@ ls ca.pem
 curl -o ca.pem https://storage.yandexcloud.kz/cloud-certs/CA.pem
 ```
 
-## Шаг 4 — Проверить подключение к базе
+## Шаг 5 — Проверить подключение к базе
 
 ```bash
 python3 -c "
@@ -98,7 +114,7 @@ print('Подключение OK')
 pip install psycopg2-binary python-dotenv
 ```
 
-## Шаг 5 — Отвязать от исходного репозитория
+## Шаг 6 — Отвязать от исходного репозитория
 
 Этот код будет твоим личным проектом, поэтому удали ссылку на исходный репозиторий:
 
